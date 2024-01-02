@@ -32,15 +32,6 @@ const FooterContent = () => {
         <Box component='span' sx={{ mx: 1, color: 'error.main' }}>
           ❤️
         </Box>
-        {`by`}
-        <Typography
-          sx={{ ml: 1 }}
-          target='_blank'
-          href='https://github.com/anashassan517'
-          component={StyledCompanyName}
-        >
-          Anas Hassan
-        </Typography>
       </Typography>
     </Box>
   )

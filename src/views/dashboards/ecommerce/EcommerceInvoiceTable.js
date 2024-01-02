@@ -129,7 +129,7 @@ const EcommerceInvoiceTable = () => {
       minWidth: 130,
       sortable: false,
       field: 'actions',
-      headerName: 'Actions',
+      headerName: 'Actions',  
       renderCell: ({ row }) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title='Delete Invoice'>

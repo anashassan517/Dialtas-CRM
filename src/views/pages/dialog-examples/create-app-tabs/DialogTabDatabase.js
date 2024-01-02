@@ -24,7 +24,7 @@ const TabDatabase = () => {
 
   return (
     <div>
-      <CustomTextField fullWidth sx={{ mb: 4 }} label='Database Name' placeholder='vuexy_database' />
+      <CustomTextField fullWidth sx={{ mb: 4 }} label='Database Name' placeholder='dialtas_database' />
       <Typography variant='h5' sx={{ mb: 4 }}>
         Select Database Engine
       </Typography>

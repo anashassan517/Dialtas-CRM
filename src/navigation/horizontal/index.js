@@ -1,6 +1,21 @@
 const navigation = () => {
   return [
     {
+      icon: 'material-symbols:percent',
+      title: 'Sales',
+      path: '/dashboards/sales'
+    },
+    {
+      icon: 'jam:document',
+      title: 'Reports',
+      path: '/dashboards/reports'
+    },
+    {
+      icon: 'uil:setting',
+      title: 'Settings',
+      path: '/dashboards/settings'
+    },
+    {
       icon: 'tabler:smart-home',
       title: 'Dashboards',
       children: [

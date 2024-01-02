@@ -72,7 +72,7 @@ const LoginV1 = () => {
         <Card>
           <CardContent sx={{ p: theme => `${theme.spacing(10.5, 8, 8)} !important` }}>
             <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width={34} viewBox='0 0 32 22' fill='none' xmlns='http://www.w3.org/2000/svg'>
+              {/* <svg width={34} viewBox='0 0 32 22' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
                   fillRule='evenodd'
                   clipRule='evenodd'
@@ -100,6 +100,8 @@ const LoginV1 = () => {
                   d='M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z'
                 />
               </svg>
+            */}
+              <img src='/images/logos/DIALTAS-logo.png' alt='Dialtas Logo' width={200} height={22} />
               <Typography variant='h3' sx={{ ml: 2.5, fontWeight: 700 }}>
                 {themeConfig.templateName}
               </Typography>
