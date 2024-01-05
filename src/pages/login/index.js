@@ -61,6 +61,7 @@ const LoginIllustration = styled('img')(({ theme }) => ({
 
 const RightWrapper = styled(Box)(({ theme }) => ({
   width: '100%',
+
   // paddingLeft: 150,
   marginLeft: 200,
   [theme.breakpoints.up('md')]: {
@@ -145,7 +146,7 @@ const LoginPage = () => {
           }}
         >
           <Box sx={{ width: '100%', maxWidth: 400 }}>
-            <Image src={'/images/logos/DIALTAS-logo.png'} width={350} height={40} />
+            <Image src={'/images/logos/DIALTAS-logo.png'} width={350} height={40} alt='Dialtas Logo' />
             {/* <Box sx={{ my: 6 }}>
               <Typography variant='h3' sx={{ mb: 1.5 }}>
                 {`Welcome to ${themeConfig.templateName}! 👋🏻`}
@@ -284,6 +285,7 @@ const LoginPage = () => {
             alignItems: 'center',
             borderRadius: '20px',
             justifyContent: 'center'
+
             // backgroundColor: 'customColors.bodyBg'
             // margin: theme => theme.spacing(8, 0, 8, 8)
           }}

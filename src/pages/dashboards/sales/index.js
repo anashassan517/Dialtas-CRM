@@ -1,17 +1,3 @@
-// import { Typography } from '@mui/material'
-// import { Box } from '@mui/system'
-// import React from 'react'
-
-// export const SalesDashboard = () => {
-//   return (
-//     <Box>
-//       <Typography>Sales Dashboard</Typography>
-//     </Box>
-//   )
-// }
-
-// ** MUI Import
-
 import { useState } from 'react'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
@@ -21,7 +7,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
   Box,
@@ -35,7 +20,9 @@ import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import TabContext from '@mui/lab/TabContext'
 import Icon from 'src/@core/components/icon'
+
 import { padding } from '@mui/system'
+import Image from 'next/image'
 
 const initialData = {
   New: [
@@ -132,7 +119,10 @@ const SalesDashboard = () => {
 
   return (
     <Box>
-      <Button variant='contained'>Add New</Button>
+      <Image src={'/images/logos/sales-pipeline.png'} width={350} height={60} alt='sales pipeline' />
+      <Box sx={{ marginTop: 10, marginBottom: 10 }}>
+        <Button variant='contained'>Add New</Button>
+      </Box>
 
       <DragDropContext onDragEnd={onDragEnd}>
         <Box>
@@ -146,7 +136,12 @@ const SalesDashboard = () => {
           >
             {columns.map((column, columnIndex) => (
               <div key={columnIndex}>
-                <h2 style={{ backgroundColor: 'white' }}>{column.id}</h2>
+                <h2 style={{ backgroundColor: 'white' }}>
+                  <Icon icon='ion:reorder-two-outline' />
+                  {column.id}
+
+                  {/* <Icon icon='basil:add-outline' /> */}
+                </h2>
                 <Droppable droppableId={column.id} type='column'>
                   {(provided, snapshot) => (
                     <TableContainer component={Paper} {...provided.droppableProps} ref={provided.innerRef}>
