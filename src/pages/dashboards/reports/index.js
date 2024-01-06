@@ -11,64 +11,86 @@ import TabPanel from '@mui/lab/TabPanel'
 import TabContext from '@mui/lab/TabContext'
 import Icon from 'src/@core/components/icon'
 
-// import Box from '@mui/material/Box'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import ReportList from 'src/pages/dashboards/reports/List/index'
+import ReportCalendar from './Calender'
+import Insight from './Insights'
 
-// ** Redux Imports
-import { useDispatch, useSelector } from 'react-redux'
+import Card from '@mui/material/Card'
 
-// ** Hooks
-import { useSettings } from 'src/@core/hooks/useSettings'
+import CardHeader from '@mui/material/CardHeader'
+import CardContent from '@mui/material/CardContent'
+import { Bar } from 'react-chartjs-2'
 
-// ** FullCalendar & App Components Imports
-import Calendar from 'src/views/apps/calendar/Calendar'
-import SidebarLeft from 'src/views/apps/calendar/SidebarLeft'
-import CalendarWrapper from 'src/@core/styles/libs/fullcalendar'
-import AddEventSidebar from 'src/views/apps/calendar/AddEventSidebar'
+// import CardContent from '@mui/material'
 
 // ** Actions
-import {
-  addEvent,
-  fetchEvents,
-  deleteEvent,
-  updateEvent,
-  handleSelectEvent,
-  handleAllCalendars,
-  handleCalendarsUpdate
-} from 'src/store/apps/calendar'
-import { position } from 'stylis'
-
-// ** CalendarColors
-const calendarsColor = {
-  Personal: 'error',
-  Business: 'primary',
-  Family: 'warning',
-  Holiday: 'success',
-  ETC: 'info'
-}
 
 const ReportsDashboard = () => {
-  const [calendarApi, setCalendarApi] = useState(null)
-  const [leftSidebarOpen, setLeftSidebarOpen] = useState(false)
-  const [addEventSidebarOpen, setAddEventSidebarOpen] = useState(false)
-
-  // ** Hooks
-  const { settings } = useSettings()
-  const dispatch = useDispatch()
-  const store = useSelector(state => state.calendar)
-
-  // ** Vars
-  const leftSidebarWidth = 300
-  const addEventSidebarWidth = 400
-  const { skin, direction } = settings
-  const mdAbove = useMediaQuery(theme => theme.breakpoints.up('md'))
-  useEffect(() => {
-    dispatch(fetchEvents(store.selectedCalendars))
-  }, [dispatch, store.selectedCalendars])
-  const handleLeftSidebarToggle = () => setLeftSidebarOpen(!leftSidebarOpen)
-  const handleAddEventSidebarToggle = () => setAddEventSidebarOpen(!addEventSidebarOpen)
-
   const [value, setValue] = useState('1')
+
+  // ** Props
+  const yellow = 'yellow',
+    labelColor = 'black',
+    borderColor = 'black'
+
+  // ** States
+  //   const [endDate, setEndDate] = useState(null)
+  //   const [startDate, setStartDate] = useState(null)
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 500 },
+    scales: {
+      x: {
+        grid: {
+          color: borderColor
+        },
+        ticks: { color: labelColor }
+      },
+      y: {
+        min: 0,
+        max: 400,
+        grid: {
+          color: borderColor
+        },
+        ticks: {
+          stepSize: 100,
+          color: labelColor
+        }
+      }
+    },
+    plugins: {
+      legend: { display: false }
+    }
+  }
+
+  const data = {
+    labels: [
+      '7/12',
+      '8/12',
+      '9/12',
+      '10/12',
+      '11/12',
+      '12/12',
+      '13/12',
+      '14/12',
+      '15/12',
+      '16/12',
+      '17/12',
+      '18/12',
+      '19/12'
+    ],
+    datasets: [
+      {
+        maxBarThickness: 15,
+        backgroundColor: yellow,
+        borderColor: 'transparent',
+        borderRadius: { topRight: 15, topLeft: 15 },
+        data: [275, 90, 190, 205, 125, 85, 55, 87, 127, 150, 230, 280, 190]
+      }
+    ]
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -96,19 +118,28 @@ const ReportsDashboard = () => {
             </Typography>
           </TabPanel>
           <TabPanel value='2'>
+            <ReportList />
             <Typography>
               Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa
               chups sesame snaps halvah.
             </Typography>
           </TabPanel>
           <TabPanel value='3'>
+            <ReportCalendar />
             <Typography>
               Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
               carrot cake gummi bears.
             </Typography>
           </TabPanel>
-          
+
           <TabPanel value='4'>
+            {/* <Insight />
+             */}
+
+            {/* <CardContent>
+              <Bar data={data} height={400} options={options} />
+            </CardContent> */}
+
             {/* <Typography>
               Cake apple pie chupa chups biscuit liquorice tootsie roll liquorice sugar plum. Cotton candy wafer wafer
               jelly cake caramels brownie gummies.
@@ -121,67 +152,6 @@ const ReportsDashboard = () => {
             </Typography>
           </TabPanel>
         </TabContext>
-      </Box>
-
-      <Box>
-        <CalendarWrapper
-          className='app-calendar'
-          sx={{
-            boxShadow: skin === 'bordered' ? 0 : 6,
-            ...(skin === 'bordered' && { border: theme => `1px solid ${theme.palette.divider}` })
-          }}
-        >
-          <Box
-            sx={{
-              p: 6,
-              pb: 0,
-              flexGrow: 1,
-              borderRadius: 1,
-              boxShadow: 'none',
-              backgroundColor: 'background.paper',
-              ...(mdAbove ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 } : {})
-            }}
-          >
-            <Calendar
-              store={store}
-              dispatch={dispatch}
-              direction={direction}
-              updateEvent={updateEvent}
-              calendarApi={calendarApi}
-              calendarsColor={calendarsColor}
-              setCalendarApi={setCalendarApi}
-              handleSelectEvent={handleSelectEvent}
-              handleLeftSidebarToggle={handleLeftSidebarToggle}
-              handleAddEventSidebarToggle={handleAddEventSidebarToggle}
-            />
-          </Box>
-          <SidebarLeft
-            store={store}
-            mdAbove={mdAbove}
-            dispatch={dispatch}
-            calendarApi={calendarApi}
-            calendarsColor={calendarsColor}
-            leftSidebarOpen={leftSidebarOpen}
-            leftSidebarWidth={leftSidebarWidth}
-            handleSelectEvent={handleSelectEvent}
-            handleAllCalendars={handleAllCalendars}
-            handleCalendarsUpdate={handleCalendarsUpdate}
-            handleLeftSidebarToggle={handleLeftSidebarToggle}
-            handleAddEventSidebarToggle={handleAddEventSidebarToggle}
-          />
-          <AddEventSidebar
-            store={store}
-            dispatch={dispatch}
-            addEvent={addEvent}
-            updateEvent={updateEvent}
-            deleteEvent={deleteEvent}
-            calendarApi={calendarApi}
-            drawerWidth={addEventSidebarWidth}
-            handleSelectEvent={handleSelectEvent}
-            addEventSidebarOpen={addEventSidebarOpen}
-            handleAddEventSidebarToggle={handleAddEventSidebarToggle}
-          />
-        </CalendarWrapper>
       </Box>
     </Box>
   )

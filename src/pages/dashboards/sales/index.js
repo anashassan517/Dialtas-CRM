@@ -2,17 +2,7 @@ import { useState } from 'react'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Paper,
-  Box,
-  Button,
-  Typography
-} from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Box, Button, Typography } from '@mui/material'
 
 // ** MUI Imports
 import Tab from '@mui/material/Tab'
@@ -121,7 +111,14 @@ const SalesDashboard = () => {
     <Box>
       <Image src={'/images/logos/sales-pipeline.png'} width={350} height={60} alt='sales pipeline' />
       <Box sx={{ marginTop: 10, marginBottom: 10 }}>
-        <Button variant='contained'>Add New</Button>
+        <Button
+          variant='contained'
+          onClick={() => {
+            console.log('helo')
+          }}
+        >
+          Add New
+        </Button>
       </Box>
 
       <DragDropContext onDragEnd={onDragEnd}>
