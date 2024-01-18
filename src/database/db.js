@@ -42,8 +42,6 @@
 // module.exports = { testDatabaseConnection,createConnection,executeQuery };
 
 
-
-// db.js
 const mysql = require('serverless-mysql');
 
 const db = mysql({
