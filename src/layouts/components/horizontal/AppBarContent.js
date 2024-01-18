@@ -8,7 +8,7 @@ import UserDropdown from 'src/@core/layouts/components/shared-components/UserDro
 import LanguageDropdown from 'src/@core/layouts/components/shared-components/LanguageDropdown'
 import NotificationDropdown from 'src/@core/layouts/components/shared-components/NotificationDropdown'
 import ShortcutsDropdown from 'src/@core/layouts/components/shared-components/ShortcutsDropdown'
-
+import Navigation from 'src/@core/layouts/components/horizontal/navigation'
 // ** Hook Import
 import { useAuth } from 'src/hooks/useAuth'
 
@@ -110,25 +110,45 @@ const shortcuts = [
 
 const AppBarContent = props => {
   // ** Props
-  const { hidden, settings, saveSettings } = props
+//   const { hidden, settings, saveSettings } = props
 
-  // ** Hook
+//   // ** Hook
+//   const auth = useAuth()
+
+//   return (
+//     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+//       {auth.user || <Autocomplete hidden={hidden} settings={settings} />}
+//       <LanguageDropdown settings={settings} saveSettings={saveSettings} />
+//       <ModeToggler settings={settings} saveSettings={saveSettings} />
+//       {auth.user ||(
+//         <>
+//           <ShortcutsDropdown settings={settings} shortcuts={shortcuts} />
+//           <NotificationDropdown settings={settings} notifications={notifications} />
+//           <UserDropdown settings={settings} />
+//         </>
+//       )}
+//     </Box>
+//   )
+// }
+const { settings, horizontalNavItems,saveSettings,hidden } = props
+ 
   const auth = useAuth()
-
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      {auth.user && <Autocomplete hidden={hidden} settings={settings} />}
-      <LanguageDropdown settings={settings} saveSettings={saveSettings} />
-      <ModeToggler settings={settings} saveSettings={saveSettings} />
-      {auth.user && (
-        <>
-          <ShortcutsDropdown settings={settings} shortcuts={shortcuts} />
-          <NotificationDropdown settings={settings} notifications={notifications} />
-          <UserDropdown settings={settings} />
-        </>
-      )}
+    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+       <Navigation settings={settings} horizontalNavItems={horizontalNavItems} />
+      {/*
+      <UserDropdown settings={settings} /> */}
+       {auth.user || <Autocomplete  settings={settings} />}
+       {/* <LanguageDropdown settings={settings} saveSettings={saveSettings} /> */}
+       {/* <ModeToggler settings={settings} saveSettings={saveSettings} /> */}
+       {auth.user ||(
+         <>
+           {/* <ShortcutsDropdown settings={settings} shortcuts={shortcuts} /> */}
+           <NotificationDropdown settings={settings} notifications={notifications} />
+           <UserDropdown settings={settings} />
+         </>
+       )}
     </Box>
   )
 }
-
 export default AppBarContent

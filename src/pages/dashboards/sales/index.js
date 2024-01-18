@@ -1,8 +1,54 @@
+// import mysql from "mysql2";
+
+
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'xgen',
+//   database: 'dialtas',
+// });
+
+// // Example: Insert a new user
+// const newLeads = {
+//     organization_name: 'XGen',
+//     opurtunity: 'Sales Lead',
+//     email: 'xgen@xgen.com',
+//     phone: '123-456-7890',
+//     revenue: '4000',
+//     periority: 'High'
+// };
+
+
+
+// // Example: Retrieve all users
+// connection.query('SELECT * FROM leads', (err, results) => {
+//     if (err) {
+//         console.error(err.message);
+//     } else {
+//         console.log(results);
+//     }
+// });
+
+// Close the connection pool after operations
+
+
+
 import { useState } from 'react'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Box, Button, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 
 // ** MUI Imports
 import Tab from '@mui/material/Tab'
@@ -11,7 +57,7 @@ import TabPanel from '@mui/lab/TabPanel'
 import TabContext from '@mui/lab/TabContext'
 import Icon from 'src/@core/components/icon'
 
-import { padding } from '@mui/system'
+import { fontSize, padding } from '@mui/system'
 import Image from 'next/image'
 
 const initialData = {
@@ -63,8 +109,7 @@ const initialData = {
 }
 
 const SalesDashboard = () => {
-  const [data, setData] = useState(initialData)
-
+  const [data, setData] = useState(initialData);
   const [columns, setColumns] = useState(
     Object.keys(initialData).map(column => ({
       id: column,
@@ -73,6 +118,37 @@ const SalesDashboard = () => {
   )
 
   const [value, setValue] = useState('1')
+  const [isAddLeadModalOpen, setAddLeadModalOpen] = useState(false);
+  const [newLeadData, setNewLeadData] = useState({
+    organization: '',
+    opportunity: '',
+    email: '',
+    phone: '',
+    expectedRevenue: '',
+    priority: '',
+  });
+
+  const handleAddLead = () => {
+    // Step 3: Update state with the new lead data
+    const newLead = {
+      id: String(Date.now()), // Generate a unique ID
+      name: newLeadData.organization,
+      lead: newLeadData.opportunity,
+      phone: newLeadData.phone,
+      address: 'Address Placeholder', // You may adjust this based on your needs
+    };
+
+    // Update state
+    setColumns((prevColumns) => {
+      const updatedColumns = [...prevColumns];
+      const newColumnIndex = updatedColumns.findIndex((column) => column.id === 'New');
+      updatedColumns[newColumnIndex].rows.push(newLead);
+      return updatedColumns;
+    });
+
+    // Close the modal
+    setAddLeadModalOpen(false);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -113,12 +189,72 @@ const SalesDashboard = () => {
       <Box sx={{ marginTop: 10, marginBottom: 10 }}>
         <Button
           variant='contained'
-          onClick={() => {
-            console.log('helo')
-          }}
+          onClick={() => setAddLeadModalOpen(true)}
         >
           Add New
         </Button>
+        <Modal open={isAddLeadModalOpen} onClose={() => setAddLeadModalOpen(false)}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            p: 4,
+            minWidth: 400,
+          }}
+        >
+          <Typography variant="h5" mb={2}>
+            Add New Lead
+          </Typography>
+          <TextField
+            label="Organization Name"
+            fullWidth
+            margin="normal"
+            onChange={(e) => setNewLeadData({ ...newLeadData, organization: e.target.value })}
+          />
+          <TextField
+            label="Opportunity Name"
+            fullWidth
+            margin="normal"
+            onChange={(e) => setNewLeadData({ ...newLeadData, opportunity: e.target.value })}
+          />
+          <TextField
+            label="Email"
+            fullWidth
+            margin="normal"
+            onChange={(e) => setNewLeadData({ ...newLeadData, email: e.target.value })}
+          />
+          <TextField
+            label="Phone"
+            fullWidth
+            margin="normal"
+            onChange={(e) => setNewLeadData({ ...newLeadData, phone: e.target.value })}
+          />
+          <TextField
+            label="Expected Revenue"
+            fullWidth
+            margin="normal"
+            onChange={(e) => setNewLeadData({ ...newLeadData, expectedRevenue: e.target.value })}
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Priority</InputLabel>
+            <Select
+              value={newLeadData.priority}
+              onChange={(e) => setNewLeadData({ ...newLeadData, priority: e.target.value })}
+            >
+              <MenuItem value="low">Low</MenuItem>
+              <MenuItem value="high">High</MenuItem>
+              <MenuItem value="veryHigh">Very High</MenuItem>
+            </Select>
+          </FormControl>
+          <Button variant="contained" onClick={handleAddLead}>
+            Add Lead
+          </Button>
+        </Box>
+      </Modal>
       </Box>
 
       <DragDropContext onDragEnd={onDragEnd}>

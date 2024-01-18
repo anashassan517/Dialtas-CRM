@@ -72,14 +72,14 @@ const VerticalLayout = props => {
             collapsedNavWidth={collapsedNavWidth}
             toggleNavVisibility={toggleNavVisibility}
             navigationBorderWidth={navigationBorderWidth}
-            navMenuContent={verticalLayoutProps.navMenu.content}
-            navMenuBranding={verticalLayoutProps.navMenu.branding}
-            menuLockedIcon={verticalLayoutProps.navMenu.lockedIcon}
-            verticalNavItems={verticalLayoutProps.navMenu.navItems}
-            navMenuProps={verticalLayoutProps.navMenu.componentProps}
-            menuUnlockedIcon={verticalLayoutProps.navMenu.unlockedIcon}
-            afterNavMenuContent={verticalLayoutProps.navMenu.afterContent}
-            beforeNavMenuContent={verticalLayoutProps.navMenu.beforeContent}
+            navMenuContent={verticalLayoutProps.navMenu?.content}
+            navMenuBranding={verticalLayoutProps.navMenu?.branding}
+            menuLockedIcon={verticalLayoutProps.navMenu?.lockedIcon}
+            verticalNavItems={verticalLayoutProps.navMenu?.navItems}
+            navMenuProps={verticalLayoutProps.navMenu?.componentProps}
+            menuUnlockedIcon={verticalLayoutProps.navMenu?.unlockedIcon}
+            afterNavMenuContent={verticalLayoutProps.navMenu?.afterContent}
+            beforeNavMenuContent={verticalLayoutProps.navMenu?.beforeContent}
             {...props}
           />
         )}

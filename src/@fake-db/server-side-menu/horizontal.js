@@ -588,8 +588,8 @@ const navigation = [
     children: [
       {
         path: '/acl',
-        action: 'read',
-        subject: 'acl-page',
+        // action: 'read',
+        // subject: 'acl-page',
         icon: 'tabler:shield',
         title: 'Access Control'
       },

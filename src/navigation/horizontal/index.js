@@ -485,168 +485,168 @@ const navigation = () => {
         }
       ]
     },
-    {
-      title: 'Forms & Tables',
-      icon: 'tabler:checkbox',
-      children: [
-        {
-          title: 'Form Elements',
-          icon: 'tabler:toggle-left',
-          children: [
-            {
-              title: 'Text Field',
-              path: '/forms/form-elements/text-field'
-            },
-            {
-              title: 'Select',
-              path: '/forms/form-elements/select'
-            },
-            {
-              title: 'Checkbox',
-              path: '/forms/form-elements/checkbox'
-            },
-            {
-              title: 'Radio',
-              path: '/forms/form-elements/radio'
-            },
-            {
-              title: 'Custom Inputs',
-              path: '/forms/form-elements/custom-inputs'
-            },
-            {
-              title: 'Textarea',
-              path: '/forms/form-elements/textarea'
-            },
-            {
-              title: 'Autocomplete',
-              path: '/forms/form-elements/autocomplete'
-            },
-            {
-              title: 'Date Pickers',
-              path: '/forms/form-elements/pickers'
-            },
-            {
-              title: 'Switch',
-              path: '/forms/form-elements/switch'
-            },
-            {
-              title: 'File Uploader',
-              path: '/forms/form-elements/file-uploader'
-            },
-            {
-              title: 'Editor',
-              path: '/forms/form-elements/editor'
-            },
-            {
-              title: 'Slider',
-              path: '/forms/form-elements/slider'
-            },
-            {
-              title: 'Input Mask',
-              path: '/forms/form-elements/input-mask'
-            }
-          ]
-        },
-        {
-          icon: 'tabler:layout-navbar',
-          title: 'Form Layouts',
-          path: '/forms/form-layouts'
-        },
-        {
-          title: 'Form Validation',
-          path: '/forms/form-validation',
-          icon: 'tabler:checkbox'
-        },
-        {
-          title: 'Form Wizard',
-          path: '/forms/form-wizard',
-          icon: 'tabler:text-wrap-disabled'
-        },
-        {
-          title: 'Table',
-          icon: 'tabler:table',
-          path: '/tables/mui'
-        },
-        {
-          title: 'Mui DataGrid',
-          icon: 'tabler:layout-grid',
-          path: '/tables/data-grid'
-        }
-      ]
-    },
-    {
-      title: 'Charts',
-      icon: 'tabler:chart-pie',
-      children: [
-        {
-          title: 'Apex',
-          icon: 'tabler:chart-sankey',
-          path: '/charts/apex-charts'
-        },
-        {
-          title: 'Recharts',
-          icon: 'tabler:chart-ppf',
-          path: '/charts/recharts'
-        },
-        {
-          title: 'ChartJS',
-          path: '/charts/chartjs',
-          icon: 'tabler:chart-line'
-        }
-      ]
-    },
-    {
-      title: 'Others',
-      icon: 'tabler:dots',
-      children: [
-        {
-          path: '/acl',
-          action: 'read',
-          subject: 'acl-page',
-          icon: 'tabler:shield',
-          title: 'Access Control'
-        },
-        {
-          title: 'Menu Levels',
-          icon: 'tabler:menu-2',
-          children: [
-            {
-              title: 'Menu Level 2.1'
-            },
-            {
-              title: 'Menu Level 2.2',
-              children: [
-                {
-                  title: 'Menu Level 3.1'
-                },
-                {
-                  title: 'Menu Level 3.2'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Disabled Menu',
-          icon: 'tabler:eye-off',
-          disabled: true
-        },
-        {
-          title: 'Raise Support',
-          icon: 'tabler:lifebuoy',
-          externalLink: true,
-          openInNewTab: true,
-          path: 'https://pixinvent.ticksy.com/'
-        },
-        {
-          title: 'Documentation',
-          icon: 'tabler:file-text',
-          externalLink: true,
-          openInNewTab: true,
-          path: 'https://demos.pixinvent.com/vuexy-nextjs-admin-template/documentation'
-        }
-      ]
-    }
+    // {
+    //   title: 'Forms & Tables',
+    //   icon: 'tabler:checkbox',
+    //   children: [
+    //     {
+    //       title: 'Form Elements',
+    //       icon: 'tabler:toggle-left',
+    //       children: [
+    //         {
+    //           title: 'Text Field',
+    //           path: '/forms/form-elements/text-field'
+    //         },
+    //         {
+    //           title: 'Select',
+    //           path: '/forms/form-elements/select'
+    //         },
+    //         {
+    //           title: 'Checkbox',
+    //           path: '/forms/form-elements/checkbox'
+    //         },
+    //         {
+    //           title: 'Radio',
+    //           path: '/forms/form-elements/radio'
+    //         },
+    //         {
+    //           title: 'Custom Inputs',
+    //           path: '/forms/form-elements/custom-inputs'
+    //         },
+    //         {
+    //           title: 'Textarea',
+    //           path: '/forms/form-elements/textarea'
+    //         },
+    //         {
+    //           title: 'Autocomplete',
+    //           path: '/forms/form-elements/autocomplete'
+    //         },
+    //         {
+    //           title: 'Date Pickers',
+    //           path: '/forms/form-elements/pickers'
+    //         },
+    //         {
+    //           title: 'Switch',
+    //           path: '/forms/form-elements/switch'
+    //         },
+    //         {
+    //           title: 'File Uploader',
+    //           path: '/forms/form-elements/file-uploader'
+    //         },
+    //         {
+    //           title: 'Editor',
+    //           path: '/forms/form-elements/editor'
+    //         },
+    //         {
+    //           title: 'Slider',
+    //           path: '/forms/form-elements/slider'
+    //         },
+    //         {
+    //           title: 'Input Mask',
+    //           path: '/forms/form-elements/input-mask'
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       icon: 'tabler:layout-navbar',
+    //       title: 'Form Layouts',
+    //       path: '/forms/form-layouts'
+    //     },
+    //     {
+    //       title: 'Form Validation',
+    //       path: '/forms/form-validation',
+    //       icon: 'tabler:checkbox'
+    //     },
+    //     {
+    //       title: 'Form Wizard',
+    //       path: '/forms/form-wizard',
+    //       icon: 'tabler:text-wrap-disabled'
+    //     },
+    //     {
+    //       title: 'Table',
+    //       icon: 'tabler:table',
+    //       path: '/tables/mui'
+    //     },
+    //     {
+    //       title: 'Mui DataGrid',
+    //       icon: 'tabler:layout-grid',
+    //       path: '/tables/data-grid'
+    //     }
+    //   ]
+    // },
+    // {
+    //   title: 'Charts',
+    //   icon: 'tabler:chart-pie',
+    //   children: [
+    //     {
+    //       title: 'Apex',
+    //       icon: 'tabler:chart-sankey',
+    //       path: '/charts/apex-charts'
+    //     },
+    //     {
+    //       title: 'Recharts',
+    //       icon: 'tabler:chart-ppf',
+    //       path: '/charts/recharts'
+    //     },
+    //     {
+    //       title: 'ChartJS',
+    //       path: '/charts/chartjs',
+    //       icon: 'tabler:chart-line'
+    //     }
+    //   ]
+    // },
+    // {
+    //   title: 'Others',
+    //   icon: 'tabler:dots',
+    //   children: [
+    //     {
+    //       path: '/acl',
+    //       action: 'read',
+    //       subject: 'acl-page',
+    //       icon: 'tabler:shield',
+    //       title: 'Access Control'
+    //     },
+    //     {
+    //       title: 'Menu Levels',
+    //       icon: 'tabler:menu-2',
+    //       children: [
+    //         {
+    //           title: 'Menu Level 2.1'
+    //         },
+    //         {
+    //           title: 'Menu Level 2.2',
+    //           children: [
+    //             {
+    //               title: 'Menu Level 3.1'
+    //             },
+    //             {
+    //               title: 'Menu Level 3.2'
+    //             }
+    //           ]
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Disabled Menu',
+    //       icon: 'tabler:eye-off',
+    //       disabled: true
+    //     },
+    //     {
+    //       title: 'Raise Support',
+    //       icon: 'tabler:lifebuoy',
+    //       externalLink: true,
+    //       openInNewTab: true,
+    //       path: 'https://pixinvent.ticksy.com/'
+    //     },
+    //     {
+    //       title: 'Documentation',
+    //       icon: 'tabler:file-text',
+    //       externalLink: true,
+    //       openInNewTab: true,
+    //       path: 'https://demos.pixinvent.com/vuexy-nextjs-admin-template/documentation'
+    //     }
+    //   ]
+    // }
   ]
 }
 

@@ -14,7 +14,7 @@ import { CacheProvider } from '@emotion/react'
 
 // ** Config Imports
 import 'src/configs/i18n'
-import { defaultACLObj } from 'src/configs/acl'
+// import { defaultACLObj } from 'src/configs/acl'
 import themeConfig from 'src/configs/themeConfig'
 
 // ** Fake-DB Import
@@ -25,7 +25,7 @@ import { Toaster } from 'react-hot-toast'
 
 // ** Component Imports
 import UserLayout from 'src/layouts/UserLayout'
-import AclGuard from 'src/@core/components/auth/AclGuard'
+// import AclGuard from 'src/@core/components/auth/AclGuard'
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
 import AuthGuard from 'src/@core/components/auth/AuthGuard'
 import GuestGuard from 'src/@core/components/auth/GuestGuard'
@@ -35,6 +35,7 @@ import Spinner from 'src/@core/components/spinner'
 
 // ** Contexts
 import { AuthProvider } from 'src/context/AuthContext'
+import { AuthBackendProvider,useAuthBackend } from 'src/hooks/useAuthBackend'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
 
 // ** Styled Components
@@ -84,7 +85,7 @@ const Guard = ({ children, authGuard, guestGuard }) => {
 // ** Configure JSS & ClassName
 const App = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-
+  
   // Variables
   const contentHeightFixed = Component.contentHeightFixed ?? false
 
@@ -93,13 +94,12 @@ const App = props => {
   const setConfig = Component.setConfig ?? undefined
   const authGuard = Component.authGuard ?? true
   const guestGuard = Component.guestGuard ?? false
-  const aclAbilities = Component.acl ?? defaultACLObj
-
+  // const aclAbilities = Component.acl ?? defaultACLObj
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
+          <title>{`${themeConfig.templateName} - Dialtas CRM`}</title>
           <meta
             name='description'
             content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
@@ -109,15 +109,16 @@ const App = props => {
         </Head>
 
         <AuthProvider>
+        <AuthBackendProvider>
           <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
             <SettingsConsumer>
               {({ settings }) => {
                 return (
                   <ThemeComponent settings={settings}>
                     <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                      <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}>
+                      {/* <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}> */}
                         {getLayout(<Component {...pageProps} />)}
-                      </AclGuard>
+                      {/* </AclGuard> */}
                     </Guard>
                     <ReactHotToast>
                       <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
@@ -127,6 +128,7 @@ const App = props => {
               }}
             </SettingsConsumer>
           </SettingsProvider>
+          </AuthBackendProvider>
         </AuthProvider>
       </CacheProvider>
     </Provider>

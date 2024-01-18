@@ -11,11 +11,13 @@ const AuthGuard = props => {
   const { children, fallback } = props
   const auth = useAuth()
   const router = useRouter()
+  // console.log(children)
   useEffect(
     () => {
       if (!router.isReady) {
         return
       }
+      // console.log(window.localStorage.getItem('userData'))
       if (auth.user === null && !window.localStorage.getItem('userData')) {
         if (router.asPath !== '/') {
           router.replace({
@@ -30,9 +32,7 @@ const AuthGuard = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.route]
   )
-  if (auth.loading || auth.user === null) {
-    return fallback
-  }
+
 
   return <>{children}</>
 }
