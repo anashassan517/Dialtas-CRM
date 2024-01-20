@@ -1,5 +1,4 @@
-// ** React Imports
-// import { forwardRef, useState } from 'react'
+import { forwardRef, useState } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -8,12 +7,13 @@ import CardContent from '@mui/material/CardContent'
 import InputAdornment from '@mui/material/InputAdornment'
 
 // ** Custom Component Import
-
 import CustomTextField from 'src/@core/components/mui/text-field'
 
 // ** Third Party Imports
 import format from 'date-fns/format'
 import { Bar } from 'react-chartjs-2'
+import { Chart as ChartJS, registerables } from 'chart.js';
+ChartJS.register(...registerables);
 import DatePicker from 'react-datepicker'
 
 // ** Icon Imports
@@ -23,9 +23,6 @@ const ReportsInsight = props => {
   // ** Props
   const { yellow, labelColor, borderColor } = props
 
-  // ** States
-  //   const [endDate, setEndDate] = useState(null)
-  //   const [startDate, setStartDate] = useState(null)
 
   const options = {
     responsive: true,
@@ -40,12 +37,12 @@ const ReportsInsight = props => {
       },
       y: {
         min: 0,
-        max: 400,
+        max: 10,
         grid: {
           color: borderColor
         },
         ticks: {
-          stepSize: 100,
+          stepSize: 1,
           color: labelColor
         }
       }
@@ -57,63 +54,31 @@ const ReportsInsight = props => {
 
   const data = {
     labels: [
-      '7/12',
-      '8/12',
-      '9/12',
-      '10/12',
-      '11/12',
-      '12/12',
-      '13/12',
-      '14/12',
-      '15/12',
-      '16/12',
-      '17/12',
-      '18/12',
-      '19/12'
+      'New',
+      'Qualified',
+      'Proposition',
+      'Won'
+      // ,
+      // '11/12',
+      // '12/12',
+      // '13/12',
+      // '14/12',
+      // '15/12',
+      // '16/12',
+      // '17/12',
+      // '18/12',
+      // '19/12'
     ],
     datasets: [
       {
-        maxBarThickness: 15,
-        backgroundColor: yellow,
-        borderColor: 'transparent',
+        maxBarThickness: 700,
+        backgroundColor: '#1467B0',
+        borderColor: '#1467B0',
         borderRadius: { topRight: 15, topLeft: 15 },
-        data: [275, 90, 190, 205, 125, 85, 55, 87, 127, 150, 230, 280, 190]
+        data: [5, 7, 9, 4, 1, 8, 5, 7, 7, 10, 3]
       }
     ]
   }
-
-  //   const CustomInput = forwardRef(({ ...props }, ref) => {
-  //     const startDate = props.start !== null ? format(props.start, 'MM/dd/yyyy') : ''
-  //     const endDate = props.end !== null ? ` - ${format(props.end, 'MM/dd/yyyy')}` : null
-  //     const value = `${startDate}${endDate !== null ? endDate : ''}`
-
-  //     return (
-  //       <CustomTextField
-  //         {...props}
-  //         value={value}
-  //         inputRef={ref}
-  //         InputProps={{
-  //           startAdornment: (
-  //             <InputAdornment position='start'>
-  //               <Icon fontSize='1.25rem' icon='tabler:calendar-event' />
-  //             </InputAdornment>
-  //           ),
-  //           endAdornment: (
-  //             <InputAdornment position='end'>
-  //               <Icon fontSize='1.25rem' icon='tabler:chevron-down' />
-  //             </InputAdornment>
-  //           )
-  //         }}
-  //       />
-  //     )
-  //   })
-
-  //   const handleOnChange = dates => {
-  //     const [start, end] = dates
-  //     setStartDate(start)
-  //     setEndDate(end)
-  //   }
-
   return (
     <Card>
       <CardHeader
@@ -147,4 +112,4 @@ const ReportsInsight = props => {
 
 
 
-export default ReportsInsight
+export default ReportsInsight;

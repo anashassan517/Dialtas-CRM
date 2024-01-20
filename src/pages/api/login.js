@@ -1,27 +1,7 @@
 // pages/api/login.js
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-const mysql = require('serverless-mysql');
-
-const executeQuery = async ({ query, values }) => {
-    try {
-        const connection = mysql({
-            config: {
-                host: 'localhost',
-                user: 'root',
-                password: 'xgen',
-                database: 'dialtas',
-                port: 3306
-            }
-        });
-        const results = await connection.query(query, values);
-
-        return results;
-    } catch (error) {
-        console.error('Error executing query:', error);
-        return { error };
-    }
-}
+import executeQuery from 'src/database/executeQuery';
 
 const jwtConfig = {
     secret: process.env.NEXT_PUBLIC_JWT_SECRET,

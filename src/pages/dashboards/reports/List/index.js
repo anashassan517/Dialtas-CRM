@@ -78,56 +78,18 @@ const renderClient = row => {
 const defaultColumns = [
   {
     flex: 0.1,
-    field: 'id',
+    field: 'company',
     minWidth: 100,
-    headerName: 'ID',
-    renderCell: ({ row }) => (
-      <Typography component={LinkStyled} href={`/apps/invoice/preview/${row.id}`}>{`#${row.id}`}</Typography>
-    )
-  },
-  {
-    flex: 0.1,
-    minWidth: 80,
-    field: 'invoiceStatus',
-    renderHeader: () => <Icon icon='tabler:trending-up' />,
-    renderCell: ({ row }) => {
-      const { dueDate, balance, invoiceStatus } = row
-      const color = invoiceStatusObj[invoiceStatus] ? invoiceStatusObj[invoiceStatus].color : 'primary'
-
-      return (
-        <Tooltip
-          title={
-            <div>
-              <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
-                {invoiceStatus}
-              </Typography>
-              <br />
-              <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
-                Balance:
-              </Typography>{' '}
-              {balance}
-              <br />
-              <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
-                Due Date:
-              </Typography>{' '}
-              {dueDate}
-            </div>
-          }
-        >
-          <CustomAvatar skin='light' color={color} sx={{ width: '1.875rem', height: '1.875rem' }}>
-            <Icon icon={invoiceStatusObj[invoiceStatus].icon} />
-          </CustomAvatar>
-        </Tooltip>
-      )
-    }
+    headerName: 'Oppurtunity',
+    renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{`${row.company || 0}`}</Typography>
   },
   {
     flex: 0.25,
     field: 'name',
-    minWidth: 320,
-    headerName: 'Client',
+    minWidth: 120,
+    headerName: 'Email',
     renderCell: ({ row }) => {
-      const { name, companyEmail } = row
+      const { name } = row
 
       return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -135,9 +97,6 @@ const defaultColumns = [
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography noWrap sx={{ color: 'text.secondary', fontWeight: 500 }}>
               {name}
-            </Typography>
-            <Typography noWrap variant='body2' sx={{ color: 'text.disabled' }}>
-              {companyEmail}
             </Typography>
           </Box>
         </Box>
@@ -148,29 +107,9 @@ const defaultColumns = [
     flex: 0.1,
     minWidth: 100,
     field: 'total',
-    headerName: 'Total',
+    headerName: 'Revenue Expected',
     renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{`$${row.total || 0}`}</Typography>
   },
-  {
-    flex: 0.15,
-    minWidth: 140,
-    field: 'issuedDate',
-    headerName: 'Issued Date',
-    renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.issuedDate}</Typography>
-  },
-  {
-    flex: 0.1,
-    minWidth: 100,
-    field: 'balance',
-    headerName: 'Balance',
-    renderCell: ({ row }) => {
-      return row.balance !== 0 ? (
-        <Typography sx={{ color: 'text.secondary' }}>{row.balance}</Typography>
-      ) : (
-        <CustomChip rounded size='small' skin='light' color='success' label='Paid' />
-      )
-    }
-  }
 ]
 /* eslint-disable */
 const CustomInput = forwardRef((props, ref) => {
@@ -277,55 +216,9 @@ const ReportList = () => {
     <DatePickerWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12}>
-          {/* <Card>
-            <CardHeader title='Filters' />
-            <CardContent>
-              <Grid container spacing={6}>
-                <Grid item xs={12} sm={6}>
-                  <CustomTextField
-                    select
-                    fullWidth
-                    label='Invoice Status'
-                    SelectProps={{ value: statusValue, onChange: e => handleStatusValue(e) }}
-                  >
-                    <MenuItem value=''>None</MenuItem>
-                    <MenuItem value='downloaded'>Downloaded</MenuItem>
-                    <MenuItem value='draft'>Draft</MenuItem>
-                    <MenuItem value='paid'>Paid</MenuItem>
-                    <MenuItem value='partial payment'>Partial Payment</MenuItem>
-                    <MenuItem value='past due'>Past Due</MenuItem>
-                    <MenuItem value='sent'>Sent</MenuItem>
-                  </CustomTextField>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <DatePicker
-                    isClearable
-                    selectsRange
-                    monthsShown={2}
-                    endDate={endDateRange}
-                    selected={startDateRange}
-                    startDate={startDateRange}
-                    shouldCloseOnSelect={false}
-                    id='date-range-picker-months'
-                    onChange={handleOnChangeRange}
-                    customInput={
-                      <CustomInput
-                        dates={dates}
-                        setDates={setDates}
-                        label='Invoice Date'
-                        end={endDateRange}
-                        start={startDateRange}
-                      />
-                    }
-                  />
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card> */}
         </Grid>
         <Grid item xs={12}>
           <Card>
-            <TableHeader value={value} selectedRows={selectedRows} handleFilter={handleFilter} />
             <DataGrid
               autoHeight
               pagination

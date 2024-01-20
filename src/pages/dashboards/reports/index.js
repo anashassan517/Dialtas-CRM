@@ -103,7 +103,6 @@ const ReportsDashboard = () => {
         <Button sx={{ marginTop: 10, marginBottom: 10 }} variant='contained'>
           Add New
         </Button>
-
         <TabContext value={value}>
           <TabList scrollButtons variant='scrollable' onChange={handleChange} aria-label='forced scroll tabs example'>
             <Tab value='1' label='Overview' icon={<Icon icon='bi:speedometer2' />} />
@@ -119,37 +118,13 @@ const ReportsDashboard = () => {
           </TabPanel>
           <TabPanel value='2'>
             <ReportList />
-            <Typography>
-              Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa
-              chups sesame snaps halvah.
-            </Typography>
           </TabPanel>
           <TabPanel value='3'>
             <ReportCalendar />
-            <Typography>
-              Danish tiramisu jujubes cupcake chocolate bar cake cheesecake chupa chups. Macaroon ice cream tootsie roll
-              carrot cake gummi bears.
-            </Typography>
           </TabPanel>
 
           <TabPanel value='4'>
-            {/* <Insight />
-             */}
-
-            {/* <CardContent>
-              <Bar data={data} height={400} options={options} />
-            </CardContent> */}
-
-            {/* <Typography>
-              Cake apple pie chupa chups biscuit liquorice tootsie roll liquorice sugar plum. Cotton candy wafer wafer
-              jelly cake caramels brownie gummies.
-            </Typography> */}
-          </TabPanel>
-          <TabPanel value='5'>
-            <Typography>
-              Chocolate bar carrot cake candy canes sesame snaps. Cupcake pie gummi bears jujubes candy canes. Chupa
-              chups sesame snaps halvah.
-            </Typography>
+            <Insight />
           </TabPanel>
         </TabContext>
       </Box>
